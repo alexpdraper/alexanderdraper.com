@@ -1,0 +1,63 @@
+*,
+*::before,
+*::after
+  box-sizing: inherit
+
+html
+  box-sizing: border-box
+  font-size: 17px
+  @media (min-width: 768px)
+    font-size: 18px
+  @media (min-width: 992px)
+    font-size: 20px
+
+
+body
+  font-family: Quasimoda, sans-serif
+  line-height: 1.35
+  color: #333
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  font-family: Volte Rounded, sans-serif
+  font-weight: bold
+  margin-top: 0
+
+h2
+  font-size: 2.2rem
+
+p
+  margin-top: 0
+
+.container
+  max-width: 100%
+  width: 500px
+  @media (min-width: 768px)
+    width: 960px
+  padding-right: 2rem
+  padding-left: 2rem
+  margin-right: auto
+  margin-left: auto
+
+a
+  color: $blue
+  &:hover
+    color: $pink
+
+img
+  display: block
+  max-width: 100%
+
+hr
+  margin: 1rem 0
+  border: 0
+  height: 10px
+  background: linear-gradient(-135deg, #fff 5px, transparent 0),
+    repeat-x #fff linear-gradient(135deg, #fff 5px, $blue 0)
+  background-position: left bottom
+  background-repeat: repeat-x
+  background-size: 10px 10px

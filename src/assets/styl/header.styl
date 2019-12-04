@@ -1,0 +1,105 @@
+.page-header
+  padding-top: 5rem
+  padding-bottom: 3rem
+  & > .container
+    @media (min-width: 576px)
+      display: flex
+
+.title
+  margin: 0
+  padding-bottom: 2rem
+  font-size: 2.5rem
+  animation: titleBounce 1s ease both
+  transform-origin: left
+  line-height: 0.9
+  @media (min-width: 576px)
+    margin-right: 2rem
+  @media (min-width: 768px)
+    font-size: 4rem
+  @media (min-width: 992px)
+    font-size: 5rem
+
+.fade-in
+  animation: fadeIn 0.8s ease both 1s
+
+@keyframes titleBounce
+  0%
+    transform: scale(0) translateX(0rem)
+  50%
+    transform: scale(1.2) translateX(2rem)
+  100%
+    transform: scale(1) translateX(0rem)
+
+.first-name,
+.last-name
+  position: relative
+  overflow: hidden
+  padding: 0.25rem 1rem
+
+.colour-block
+  position: absolute
+  content: ""
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  z-index: -1
+
+.first-name
+  color: $white
+  text-shadow: 1px 1px $blue
+  .colour-block
+    background: $pink
+    animation: firstNameIn 1s ease both
+
+.last-name
+  color: $white
+  text-shadow: 1px 1px $pink
+  margin-left: 1rem
+  .colour-block
+    background: $blue
+    animation: lastNameIn 0.8s ease 0.2s both
+
+@keyframes greenToWhiteText
+  0%
+    color: $green
+  100%
+    color: $white
+
+@keyframes blueToWhiteText
+  0%
+    color: $blue
+  100%
+    color: $white
+
+@keyframes firstNameIn
+  0%
+    transform: scaleX(0) translateX(0) rotateZ(0deg)
+  35%
+    transform: scaleX(1) translateX(0) rotateZ(-5deg)
+  60%
+    transform: scaleX(1) translateX(3rem) rotateZ(10deg)
+  100%
+    transform: scaleX(1) translateX(0) rotateZ(5deg)
+
+@keyframes lastNameIn
+  0%
+    transform: scaleX(0) translateX(-1rem) rotateZ(0deg)
+  25%
+    transform: scaleX(1) translateX(1rem) rotateZ(30deg)
+  50%
+    transform: scaleX(1) translateX(3.5rem) rotateZ(-14deg)
+  100%
+    transform: scaleX(1) translateX(0rem) rotateZ(-5deg)
+
+@keyframes fadeIn
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+@keyframes fadeOut
+  0%
+    opacity: 1
+  100%
+    opacity: 0

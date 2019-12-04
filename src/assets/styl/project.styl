@@ -1,0 +1,49 @@
+.project
+  & + .project
+    margin-top: 3rem
+  @media (min-width: 768px)
+    display: flex
+
+.project-header
+  margin-bottom: 0.5rem
+  @media (min-width: 768px)
+    flex: 0 0 40%
+    max-width: 40%
+    padding-right: 1rem
+  @media (min-width: 1024px)
+    flex: 0 0 35%
+    max-width: 35%
+  .project-title
+    margin-bottom: 0.75rem
+    font-size: 2rem
+    & > span
+      position: relative
+      background-color: $pink
+      padding: 0.25rem 0.5rem
+      margin-right: -0.5rem
+      margin-left: -0.5rem
+      color: $white
+      text-shadow: 1px 1px $blue
+      .colour-block
+        background: $blue
+        transform: rotateZ(-5deg)
+  .project-links
+    list-style: none
+    padding: 0
+    margin: 0
+    a
+      text-decoration: none
+      padding: 0.25rem 0
+      display: block
+
+.project-info
+  @media (min-width: 768px)
+    padding-left: 1rem
+  @media (min-width: 1024px)
+    padding-left: 2rem
+  & > * + *
+    margin-top: 1rem
+  .project-image
+    border-radius: 5px
+    overflow: hidden
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15)
