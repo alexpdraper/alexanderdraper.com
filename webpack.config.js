@@ -11,11 +11,11 @@ module.exports = {
   mode: 'production',
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
-      }),
+      // new UglifyJsPlugin({
+      //   cache: true,
+      //   parallel: true,
+      //   sourceMap: true
+      // }),
       new OptimizeCssAssetsPlugin()
     ]
     // splitChunks: {

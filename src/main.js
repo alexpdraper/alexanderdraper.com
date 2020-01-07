@@ -1,5 +1,9 @@
-import 'normalize.css'
-import './assets/main.styl'
+import 'normalize.css';
+import './assets/main.styl';
+import WebCli from './components/dice-repl/web-cli.js';
+import parse from './components/dice-repl/parse.js';
+
+window.customElements.define('web-cli', WebCli);
 
 // A pretty much entirely unnecessary function for making sure the DOM is ready
 var domReady = (function () {
@@ -32,4 +36,17 @@ domReady(function () {
   if ($yearEl) {
     $yearEl.textContent = new Date().getFullYear();
   }
+
+  var $repl = document.getElementById('dice-repl');
+  $repl.addLine('Roll some dice! Try “1d6 + 3”');
+
+  $repl.addEventListener('line', function (event) {
+    try {
+      var fn = parse(event.detail);
+      var result = fn();
+      $repl.addLine(result);
+    } catch (e) {
+      $repl.addLine(e.message);
+    }
+  }, false);
 });
