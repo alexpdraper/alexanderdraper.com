@@ -2,3 +2,4 @@
   publish = "site/"
   command = "npm run build"
   NODE_ENV = "production"
+  NODE_VERSION = "12.20.0"
