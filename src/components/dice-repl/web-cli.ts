@@ -1,13 +1,17 @@
 class WebCli extends HTMLElement {
-  constructor () {
+  #savedInput: string;
+  commands: string[];
+  commandIndex: number;
+
+  constructor() {
     super();
 
-    this.savedInput = '';
+    this.#savedInput = '';
     this.commands = [];
     this.commandIndex = -1;
 
     // Create a shadow root
-    const shadow = this.attachShadow({mode: 'open'});
+    const shadow = this.attachShadow({ mode: 'open' });
 
     // Create elements
     const $wrapper = document.createElement('div');
@@ -39,9 +43,9 @@ class WebCli extends HTMLElement {
         $output.scrollTop = $output.scrollHeight;
 
         this.commands = [value].concat(this.commands);
-        this.savedInput = '';
+        this.#savedInput = '';
         this.commandIndex = -1;
-        this.dispatchEvent(new CustomEvent('line', {detail: value}));
+        this.dispatchEvent(new CustomEvent('line', { detail: value }));
       }
     });
 
@@ -49,7 +53,7 @@ class WebCli extends HTMLElement {
       if (!this.commands.length) return;
       if (event.key === 'ArrowUp') {
         if (this.commandIndex === -1) {
-          this.savedInput = $input.value;
+          this.#savedInput = $input.value;
         }
         this.commandIndex = this.commandIndex + 1;
       } else if (event.key === 'ArrowDown') {
@@ -64,7 +68,7 @@ class WebCli extends HTMLElement {
       this.commandIndex = Math.max(this.commandIndex, -1);
 
       if (this.commandIndex === -1) {
-        $input.value = this.savedInput;
+        $input.value = this.#savedInput;
       } else {
         $input.value = this.commands[this.commandIndex];
       }
@@ -178,16 +182,17 @@ class WebCli extends HTMLElement {
     shadow.appendChild($wrapper);
   }
 
-  addLine (input) {
-    const $output = this.shadowRoot.querySelector('.console-output');
+  addLine(input: string): void {
+    const $output = this.shadowRoot?.querySelector('.console-output');
+    if (!$output) return;
     const $line = document.createElement('div');
     $line.setAttribute('class', 'line');
     $line.textContent = input;
     $output.appendChild($line);
     $output.scrollTop = $output.scrollHeight;
   }
-};
+}
 
-export { WebCli }
+export { WebCli };
 
-export default WebCli
+export default WebCli;
