@@ -3,11 +3,13 @@ import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 
+import path from 'path';
+
 export default {
-  input: './src/main.ts',
+  input: path.resolve(__dirname, 'src', 'main.ts'),
   output: [
     {
-      dir: './site/assets',
+      dir: path.resolve(__dirname, 'site', 'assets'),
       format: 'iife',
     },
   ],
