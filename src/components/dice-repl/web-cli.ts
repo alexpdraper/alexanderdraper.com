@@ -93,7 +93,6 @@ class WebCli extends HTMLElement {
         font-family: Tabular, Fira Code, Input Mono, Courier, Menlo, Andale Mono, monospace;
         font-size: 16px;
         color: ${textColor};
-        background-color: ${textColor};
         padding: 0.5em;
       }
 

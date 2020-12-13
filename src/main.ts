@@ -1,5 +1,7 @@
 import './assets/style.css';
 
+import './components/app-desktop';
+import './components/app-window';
 import WebCli from './components/dice-repl/web-cli';
 import parse from './components/dice-repl/parse';
 
@@ -8,7 +10,7 @@ window.customElements.define('web-cli', WebCli);
 const domReady = (callback: () => void) => {
   if (document.readyState !== 'loading') callback();
   else document.addEventListener('DOMContentLoaded', () => callback());
-}
+};
 
 domReady(() => {
   // Add the year to the copyright footer.

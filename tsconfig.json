@@ -3,6 +3,8 @@
   "compilerOptions": {
     "target": "ES2015",
     "module": "ES2015",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
     "strict": true,
     "esModuleInterop": true,
     "allowJs": false
