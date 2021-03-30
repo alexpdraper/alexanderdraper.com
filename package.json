@@ -10,8 +10,8 @@
   "repository": "github:alexpdraper/alexanderdraper.com",
   "author": "Alexander Draper <alexdraper@hey.com> (https://alexanderdraper.com)",
   "dependencies": {
-    "@github/catalyst": "^1.0.2",
-    "@github/jtml": "^0.1.0"
+    "@github/catalyst": "^1.1.3",
+    "@github/jtml": "^0.4.0"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^11.0.0",

@@ -62,7 +62,7 @@ export class AppWindowElement extends HTMLElement {
     this.classList.add('shadow-lg', 'resize');
 
     const style = window.localStorage.getItem(
-      `${this.getAttribute('app-name')}-style`
+      `${this.getAttribute('app-id')}-style`
     );
     if (style) {
       this.setAttribute('style', style);
@@ -109,7 +109,7 @@ export class AppWindowElement extends HTMLElement {
   }
 
   closeWindow(event: MouseEvent): void {
-    this.parentElement?.removeChild(this);
+    this.dispatchEvent(new CustomEvent('close-app'));
   }
 
   grabHandle(event: MouseEvent): void {
@@ -128,8 +128,12 @@ export class AppWindowElement extends HTMLElement {
 
   dropHandle(): void {
     this.dragHandle.style.cursor = '';
+    this.saveStyle();
+  }
+
+  saveStyle(): void {
     window.localStorage.setItem(
-      `${this.getAttribute('app-name')}-style`,
+      `${this.getAttribute('app-id')}-style`,
       this.getAttribute('style') || ''
     );
   }
