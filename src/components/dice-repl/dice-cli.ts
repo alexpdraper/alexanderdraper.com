@@ -1,6 +1,6 @@
-import { controller, target } from "@github/catalyst";
-import parse from "./parse";
-import WebCli from "./web-cli";
+import { controller, target } from '@github/catalyst';
+import parse from './parse';
+import WebCli from './web-cli';
 import { html, render } from '@github/jtml';
 
 window.customElements.define('web-cli', WebCli);
@@ -26,16 +26,27 @@ export class DiceCliElement extends HTMLElement {
   }
 
   update() {
-    render(html`
-      <style>
-        *, *::before, *::after { box-sizing: border-box; }
-        :host, .h-full { height: 100%; }
-      </style>
-      <web-cli
-        class="h-full";
-        data-target="dice-cli.webCli"
-        data-action="line:dice-cli#readLine"
-      ></web-cli>
-    `, this.shadowRoot!);
+    render(
+      html`
+        <style>
+          *,
+          *::before,
+          *::after {
+            box-sizing: border-box;
+          }
+          :host,
+          .h-full {
+            height: 100%;
+          }
+        </style>
+        <web-cli
+          class="h-full"
+          ;
+          data-target="dice-cli.webCli"
+          data-action="line:dice-cli#readLine"
+        ></web-cli>
+      `,
+      this.shadowRoot!
+    );
   }
 }

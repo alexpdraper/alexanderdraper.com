@@ -59,10 +59,7 @@ export class AppWindowElement extends HTMLElement {
   @target dragHandle!: HTMLElement;
 
   connectedCallback() {
-    this.classList.add(
-      'shadow-lg',
-      'resize',
-    );
+    this.classList.add('shadow-lg', 'resize');
 
     const style = window.localStorage.getItem(
       `${this.getAttribute('app-name')}-style`
@@ -75,7 +72,11 @@ export class AppWindowElement extends HTMLElement {
     this.update();
   }
 
-  attributeChangedCallback(attributeName: string, oldValue: string, newValue: string) {
+  attributeChangedCallback(
+    attributeName: string,
+    oldValue: string,
+    newValue: string
+  ) {
     if (attributeName === 'app-name' && this.shadowRoot) {
       this.update();
     }
@@ -83,23 +84,28 @@ export class AppWindowElement extends HTMLElement {
 
   private update() {
     const appName = this.getAttribute('app-name') || 'Nameless';
-    render(html`
-      <style>${this.styles}</style>
-      <div
-        class="window-header"
-        data-action="mousedown:app-window#grabHandle"
-        data-target="app-window.dragHandle"
-      >
-        <button
-          class="close-button"
-          data-action="click:app-window#closeWindow"
+    render(
+      html`
+        <style>
+          ${this.styles}
+        </style>
+        <div
+          class="window-header"
+          data-action="mousedown:app-window#grabHandle"
+          data-target="app-window.dragHandle"
         >
-          <span>&times;</span>
-        </button>
-        ${appName}
-      </div>
-      <slot></slot>
-    `, this.shadowRoot!);
+          <button
+            class="close-button"
+            data-action="click:app-window#closeWindow"
+          >
+            <span>&times;</span>
+          </button>
+          ${appName}
+        </div>
+        <slot></slot>
+      `,
+      this.shadowRoot!
+    );
   }
 
   closeWindow(event: MouseEvent): void {
@@ -124,7 +130,7 @@ export class AppWindowElement extends HTMLElement {
     this.dragHandle.style.cursor = '';
     window.localStorage.setItem(
       `${this.getAttribute('app-name')}-style`,
-      this.getAttribute('style') || '',
+      this.getAttribute('style') || ''
     );
   }
 }

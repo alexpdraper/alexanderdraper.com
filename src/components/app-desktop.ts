@@ -33,14 +33,8 @@ export class AppDesktopElement extends HTMLElement {
 
   doDragging(event: MouseEvent): void {
     if (!this.#dragTarget) return;
-    const x = Math.max(
-      event.clientX - this.#offsetX,
-      0
-    );
-    const y = Math.max(
-      event.clientY - this.#offsetY,
-      0
-    );
+    const x = Math.max(event.clientX - this.#offsetX, 0);
+    const y = Math.max(event.clientY - this.#offsetY, 0);
     this.#dragTarget.style.transform = `translate(${x}px, ${y}px)`;
   }
 
@@ -50,7 +44,7 @@ export class AppDesktopElement extends HTMLElement {
     this.#dragTarget = null;
   }
 
-  launchApp(event: CustomEvent<{ name: string; id: string; }>) {
+  launchApp(event: CustomEvent<{ name: string; id: string }>) {
     // Only one of each app at a time
     if (this.querySelector(event.detail.id)) return;
 
