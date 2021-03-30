@@ -5,19 +5,22 @@ import { html, render } from '@github/jtml';
 export class NotePadElement extends HTMLElement {
   @target noteContent!: HTMLElement;
 
+  private readonly contentKey = 'notepad-content';
+
   connectedCallback() {
     this.attachShadow({ mode: 'open' });
     this.update();
 
-    const content = window.localStorage.getItem('notepad-content');
-    if (content) {
-      this.noteContent.textContent = content;
-    }
+    this.noteContent.textContent = this.getContent();
   }
 
-  saveContent() {
+  getContent(): string {
+    return window.localStorage.getItem(this.contentKey) || '';
+  }
+
+  saveContent(): void {
     window.localStorage.setItem(
-      'notepad-content',
+      this.contentKey,
       this.noteContent.textContent || ''
     );
   }
@@ -45,6 +48,7 @@ export class NotePadElement extends HTMLElement {
             width: 100%;
             height: 100%;
             background-color: #fafafa;
+            white-space: pre-wrap;
           }
         </style>
         <div
