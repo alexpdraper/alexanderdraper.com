@@ -16,7 +16,7 @@ const systemFonts = [
 ];
 
 module.exports = {
-  purge: ['./site/index.html'],
+  purge: ['./site/index.html', './src/components/**/*.ts'],
   darkMode: 'class',
   theme: {
     fontFamily: {

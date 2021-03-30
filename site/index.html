@@ -84,41 +84,41 @@
 
   <body class="w-full h-full overflow-hidden bg-pattern-fancy">
     <app-desktop class="block w-full h-full overflow-hidden">
-      <div
-        class="relative w-full h-full overflow-hidden"
-        data-action="
-        mousemove:app-desktop#doDragging
-        mouseup:app-desktop#endDragging
-      "
-      >
-        <h1
-          class="font-display text-4xl font-bold absolute bottom-8 left-8 text-white bg-gray-600 px-4 py-2"
-        >
-          Alexander Draper
-        </h1>
-        <app-window
-          class="flex flex-col absolute border border-gray-600 bg-white bg-pattern-texture shadow-lg overflow-hidden resize-x"
-          style="width: 500px; top: 1rem; left: 1rem"
-          data-action="grabbed:app-desktop#startDragging"
-        >
-          <div
-            class="w-full h-8 border-b border-gray-600 flex items-center p-2 cursor-grab font-system leading-none text-xs text-gray-600 select-none"
-            data-action="mousedown:app-window#grabHandle"
-            data-target="app-window.dragHandle"
+      <div class="relative w-full h-full overflow-hidden">
+        <div class="absolute bottom-8 left-8 flex flex-col">
+          <h1
+            class="font-display text-4xl font-bold text-white bg-gray-600 px-4 py-2 order-2"
           >
-            <button
-              class="w-4 h-4 bg-red-400 text-red-100 rounded-full p-0 flex items-center justify-center text-center leading-none text-xs mr-2"
-              data-action="click:app-window#closeWindow"
-            >
-              <span>&times;</span>
-            </button>
+            Alexander Draper
+          </h1>
 
-            Dice CLI
+          <div class="order-1 mb-4 flex items-stretch">
+            <app-start-button
+              class="mr-2"
+              app-id="dice-cli"
+              app-name="Dice CLI"
+              icon-src="/static/favicon.ico/favicon-96x96.png"
+              data-action="launch:app-desktop#launchApp"
+            ></app-start-button>
+            <app-start-button
+              class="mr-2"
+              app-id="note-pad"
+              app-name="Notepad"
+              icon-src="/static/favicon.ico/favicon-96x96.png"
+              data-action="launch:app-desktop#launchApp"
+            ></app-start-button>
           </div>
-          <web-cli id="dice-repl"></web-cli>
+        </div>
+
+        <app-window
+          style="width: 500px; transform: translate(1rem, 1rem);"
+          data-action="grabbed:app-desktop#startDragging"
+          app-name="Dice CLI"
+        >
+          <dice-cli></dice-cli>
         </app-window>
 
-        <app-window
+        <!-- <app-window
           class="flex flex-col absolute border border-gray-600 bg-white bg-pattern-texture shadow-lg overflow-hidden resize"
           style="width: 500px; height: 300px; top: 2rem; left: 2rem"
           data-action="grabbed:app-desktop#startDragging"
@@ -144,7 +144,7 @@
               allow="camera; microphone;"
             ></iframe>
           </div>
-        </app-window>
+        </app-window> -->
       </div>
     </app-desktop>
   </body>

@@ -94,10 +94,13 @@ class WebCli extends HTMLElement {
         font-size: 16px;
         color: ${textColor};
         padding: 0.5em;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
       }
 
       .console-output {
-        height: 25em;
+        height: 100%;
         overflow-y: auto;
         word-break: break-all;
         background-color: ${bgColor};
