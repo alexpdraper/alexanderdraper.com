@@ -138,6 +138,7 @@ class WebCli extends HTMLElement {
         color: inherit;
         background-color: ${bgColor};
         box-shadow: 0 4px 8px rgba(10, 10, 10, 0.15);
+        width: 100%;
       }
 
       button {

@@ -78,7 +78,6 @@ export class AppDesktopElement extends HTMLElement {
     this.stackWindows();
 
     const appElement = document.createElement(event.detail.id);
-    appElement.classList.add('h-full');
     appWindow.appendChild(appElement);
   }
 

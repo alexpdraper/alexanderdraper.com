@@ -3,7 +3,7 @@ import { html, render } from '@github/jtml';
 
 @controller
 export class NotePadElement extends HTMLElement {
-  @target noteContent!: HTMLElement;
+  @target noteContent!: HTMLTextAreaElement;
 
   private readonly contentKey = 'notepad-content';
 
@@ -11,7 +11,7 @@ export class NotePadElement extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.update();
 
-    this.noteContent.textContent = this.getContent();
+    this.noteContent.value = this.getContent();
   }
 
   getContent(): string {
@@ -19,10 +19,7 @@ export class NotePadElement extends HTMLElement {
   }
 
   saveContent(): void {
-    window.localStorage.setItem(
-      this.contentKey,
-      this.noteContent.textContent || ''
-    );
+    window.localStorage.setItem(this.contentKey, this.noteContent.value);
   }
 
   update() {
@@ -46,17 +43,17 @@ export class NotePadElement extends HTMLElement {
             border: 1px solid rgb(75, 85, 99);
             padding: 0.25rem;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             background-color: #fafafa;
-            white-space: pre-wrap;
+            overflow: auto;
+            resize: none;
           }
         </style>
-        <div
+        <textarea
           class="note-content"
-          contenteditable
           data-target="note-pad.noteContent"
           data-action="blur:note-pad#saveContent"
-        ></div>
+        ></textarea>
       `,
       this.shadowRoot!
     );
