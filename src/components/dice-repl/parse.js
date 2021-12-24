@@ -4,12 +4,12 @@ const operations = {
   '+': (a, b) => a + b,
   '-': (a, b) => a - b,
   '*': (a, b) => a * b,
-  '/': (a, b) => a / b
+  '/': (a, b) => a / b,
 };
 const operators = Object.keys(operations);
 const operatorRE = /(\+|\-|\*|\/)/g;
 
-function evaluate (total, item, index, arr) {
+function evaluate(total, item, index, arr) {
   if (operators.indexOf(item) >= 0) return total;
   let operator = '+';
 
@@ -32,31 +32,33 @@ function evaluate (total, item, index, arr) {
   return operations[operator](total, value);
 }
 
-function parse (expression) {
+function parse(expression) {
   let parsed = Array.isArray(expression)
     ? expression.reduce((result, arg) => `${result} ${arg}`, '')
     : expression;
 
   parsed = parsed
     .split(/\(|\)/g)
-    .filter(item => item !== '')
-    .map(expr => expr
-      .replace(operatorRE, ' $1 ')
-      .trim()
-      .split(/\s+/g)
-      .map(arg => {
-        if (operators.indexOf(arg) >= 0) return arg;
-        if (!isNaN(arg)) return Number(arg);
-        if (/^\d+d\d+$/i.test(arg)) {
-          const [numRolls, sides] = arg.split(/d/i).map(num => Number(num));
-          const dice = new Dice(sides);
-          return () => {
-            dice.reset().roll(numRolls);
-            return dice.total;
-          };
-        }
-        throw new Error(`Unrecognized argument: ${arg}`);
-      }));
+    .filter((item) => item !== '')
+    .map((expr) =>
+      expr
+        .replace(operatorRE, ' $1 ')
+        .trim()
+        .split(/\s+/g)
+        .map((arg) => {
+          if (operators.indexOf(arg) >= 0) return arg;
+          if (!isNaN(arg)) return Number(arg);
+          if (/^\d+d\d+$/i.test(arg)) {
+            const [numRolls, sides] = arg.split(/d/i).map((num) => Number(num));
+            const dice = new Dice(sides);
+            return () => {
+              dice.reset().roll(numRolls);
+              return dice.total;
+            };
+          }
+          throw new Error(`Unrecognized argument: ${arg}`);
+        })
+    );
 
   parsed = parsed.reduce((result, arr) => {
     let expr = arr.slice();
@@ -82,4 +84,4 @@ function parse (expression) {
   return () => parsed.reduce(evaluate, 0);
 }
 
-export default parse
+export default parse;

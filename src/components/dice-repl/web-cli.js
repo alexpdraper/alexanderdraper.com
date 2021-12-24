@@ -1,5 +1,5 @@
 class WebCli extends HTMLElement {
-  constructor () {
+  constructor() {
     super();
 
     this.savedInput = '';
@@ -7,7 +7,7 @@ class WebCli extends HTMLElement {
     this.commandIndex = -1;
 
     // Create a shadow root
-    const shadow = this.attachShadow({mode: 'open'});
+    const shadow = this.attachShadow({ mode: 'open' });
 
     // Create elements
     const $wrapper = document.createElement('div');
@@ -41,7 +41,7 @@ class WebCli extends HTMLElement {
         this.commands = [value].concat(this.commands);
         this.savedInput = '';
         this.commandIndex = -1;
-        this.dispatchEvent(new CustomEvent('line', {detail: value}));
+        this.dispatchEvent(new CustomEvent('line', { detail: value }));
       }
     });
 
@@ -178,7 +178,7 @@ class WebCli extends HTMLElement {
     shadow.appendChild($wrapper);
   }
 
-  addLine (input) {
+  addLine(input) {
     const $output = this.shadowRoot.querySelector('.console-output');
     const $line = document.createElement('div');
     $line.setAttribute('class', 'line');
@@ -186,8 +186,8 @@ class WebCli extends HTMLElement {
     $output.appendChild($line);
     $output.scrollTop = $output.scrollHeight;
   }
-};
+}
 
-export { WebCli }
+export { WebCli };
 
-export default WebCli
+export default WebCli;

@@ -8,15 +8,16 @@ window.customElements.define('web-cli', WebCli);
 // A pretty much entirely unnecessary function for making sure the DOM is ready
 var domReady = (function () {
   var fns = [];
-  var loaded = document.readyState === 'complete' ||
+  var loaded =
+    document.readyState === 'complete' ||
     (document.readyState !== 'loading' && !document.documentElement.doScroll);
 
-  function completed () {
+  function completed() {
     loaded = true;
     document.removeEventListener('DOMContentLoaded', completed);
     window.removeEventListener('load', completed);
     var fn;
-    while (fn = fns.shift()) fn();
+    while ((fn = fns.shift())) fn();
   }
 
   if (!loaded) {
@@ -27,7 +28,7 @@ var domReady = (function () {
   return function (cb) {
     if (loaded) window.setTimeout(cb, 0);
     else fns.push(cb);
-  }
+  };
 })();
 
 domReady(function () {
@@ -40,13 +41,17 @@ domReady(function () {
   var $repl = document.getElementById('dice-repl');
   $repl.addLine('Roll some dice! Try “1d6 + 3”');
 
-  $repl.addEventListener('line', function (event) {
-    try {
-      var fn = parse(event.detail);
-      var result = fn();
-      $repl.addLine(result);
-    } catch (e) {
-      $repl.addLine(e.message);
-    }
-  }, false);
+  $repl.addEventListener(
+    'line',
+    function (event) {
+      try {
+        var fn = parse(event.detail);
+        var result = fn();
+        $repl.addLine(result);
+      } catch (e) {
+        $repl.addLine(e.message);
+      }
+    },
+    false
+  );
 });

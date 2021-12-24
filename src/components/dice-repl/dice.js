@@ -1,31 +1,31 @@
 class Dice {
-  constructor (sides) {
+  constructor(sides) {
     this._sides = sides;
     this._rolls = [];
     this._lastRolls = [];
   }
 
-  get sides () {
+  get sides() {
     return this._sides;
   }
 
-  get rolls () {
+  get rolls() {
     return this._rolls.slice();
   }
 
-  get lastRolls () {
+  get lastRolls() {
     return this._lastRolls.slice();
   }
 
-  get total () {
+  get total() {
     return this._rolls.reduce((prev, curr) => prev + curr, 0);
   }
 
-  get lastRollsTotal () {
+  get lastRollsTotal() {
     return this._lastRolls.reduce((prev, curr) => prev + curr, 0);
   }
 
-  roll (times) {
+  roll(times) {
     times = Number(times);
     if (!times || times <= 0) times = 1;
     let newRolls = [];
@@ -40,19 +40,19 @@ class Dice {
     return this.lastRollsTotal;
   }
 
-  reset () {
+  reset() {
     this._rolls = [];
     this._lastRolls = [];
     return this;
   }
 
-  log () {
+  log() {
     console.log(this.rolls);
     console.log(this.total);
     return this;
   }
 }
 
-export { Dice }
+export { Dice };
 
-export default Dice
+export default Dice;
