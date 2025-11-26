@@ -39,11 +39,10 @@ export class AboutMeElement extends HTMLElement {
             height: 100%;
             padding: 1rem;
             line-height: 1.35;
+            border: 1px solid black;
           }
 
           h2 {
-            /*border-top: 1px solid;*/
-            /*padding-top: 0.375rem;*/
             padding: 0;
             margin-top: 2rem;
             margin-bottom: 0.5rem;
@@ -91,7 +90,9 @@ export class AboutMeElement extends HTMLElement {
               Thanks for visiting my site! I built this project as a fun way to
               experiment with web components. I think it’s pretty fun. While
               you’re here, you can write yourself a note, listen to some of my
-              music, or simulate dice rolls using the Dice CLI.
+              music, or simulate dice rolls using the Dice CLI. Also check out
+              The Tree Climber—a li’l game I made for a game jam over a couple
+              weeks.
             </p>
 
             <h2>About me</h2>

@@ -1,16 +1,16 @@
-import postcss from 'rollup-plugin-postcss';
-import resolve from '@rollup/plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
-import typescript from '@rollup/plugin-typescript';
+import postcss from "rollup-plugin-postcss";
+import resolve from "@rollup/plugin-node-resolve";
+import { terser } from "rollup-plugin-terser";
+import typescript from "@rollup/plugin-typescript";
 
-import path from 'path';
+import path from "path";
 
 export default {
-  input: path.resolve(__dirname, 'src', 'main.ts'),
+  input: path.resolve(__dirname, "src", "main.ts"),
   output: [
     {
-      dir: path.resolve(__dirname, 'site', 'assets'),
-      format: 'iife',
+      dir: path.resolve(__dirname, "site", "assets"),
+      format: "iife",
     },
   ],
   plugins: [
@@ -18,8 +18,8 @@ export default {
     postcss({
       extract: true,
     }),
-    typescript({ tsconfig: './tsconfig.json' }),
-    ...(process.env.NODE_ENV === 'production'
+    typescript({ tsconfig: "./tsconfig.json" }),
+    ...(process.env.NODE_ENV === "production"
       ? [
           terser({
             keep_classnames: /^[A-Z].+Element$/,

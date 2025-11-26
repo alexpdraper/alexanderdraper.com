@@ -1,4 +1,4 @@
-import { OperatorString } from './operator-string.type';
+import { OperatorString } from "./operator-string.type";
 
 export interface GroupedExpression {
   operator: OperatorString;

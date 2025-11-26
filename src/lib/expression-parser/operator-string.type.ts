@@ -1,3 +1,3 @@
-export const operatorStrings = ['+', '-', '*', '/'] as const;
+export const operatorStrings = ["+", "-", "*", "/"] as const;
 
-export type OperatorString = typeof operatorStrings[number];
+export type OperatorString = (typeof operatorStrings)[number];

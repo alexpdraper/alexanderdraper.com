@@ -107,7 +107,7 @@ export class TCSPlayerElement extends HTMLElement {
           ${this.albumIframe}
         </div>
       `,
-      this.shadowRoot!
+      this.shadowRoot!,
     );
   }
 }

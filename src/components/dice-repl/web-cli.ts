@@ -6,57 +6,57 @@ class WebCli extends HTMLElement {
   constructor() {
     super();
 
-    this.#savedInput = '';
+    this.#savedInput = "";
     this.commands = [];
     this.commandIndex = -1;
 
     // Create a shadow root
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: "open" });
 
     // Create elements
-    const $wrapper = document.createElement('div');
-    $wrapper.setAttribute('class', 'console');
+    const $wrapper = document.createElement("div");
+    $wrapper.setAttribute("class", "console");
 
-    const $output = document.createElement('div');
-    $output.setAttribute('class', 'console-output');
+    const $output = document.createElement("div");
+    $output.setAttribute("class", "console-output");
 
-    const $inputForm = document.createElement('form');
-    $inputForm.setAttribute('class', 'input-form');
+    const $inputForm = document.createElement("form");
+    $inputForm.setAttribute("class", "input-form");
 
-    const $input = document.createElement('input');
-    const $submitButton = document.createElement('button');
-    $submitButton.textContent = '⏎';
+    const $input = document.createElement("input");
+    const $submitButton = document.createElement("button");
+    $submitButton.textContent = "⏎";
     $inputForm.appendChild($input);
     $inputForm.appendChild($submitButton);
 
-    $inputForm.addEventListener('submit', (event) => {
+    $inputForm.addEventListener("submit", (event) => {
       event.preventDefault();
       let value = $input.value.trim();
 
       if (value) {
-        const $line = document.createElement('div');
-        $line.setAttribute('class', 'line in');
-        $line.textContent = '> ' + value;
-        $input.value = '';
+        const $line = document.createElement("div");
+        $line.setAttribute("class", "line in");
+        $line.textContent = "> " + value;
+        $input.value = "";
         $input.focus();
         $output.appendChild($line);
         $output.scrollTop = $output.scrollHeight;
 
         this.commands = [value].concat(this.commands);
-        this.#savedInput = '';
+        this.#savedInput = "";
         this.commandIndex = -1;
-        this.dispatchEvent(new CustomEvent('line', { detail: value }));
+        this.dispatchEvent(new CustomEvent("line", { detail: value }));
       }
     });
 
-    $input.addEventListener('keydown', (event) => {
+    $input.addEventListener("keydown", (event) => {
       if (!this.commands.length) return;
-      if (event.key === 'ArrowUp') {
+      if (event.key === "ArrowUp") {
         if (this.commandIndex === -1) {
           this.#savedInput = $input.value;
         }
         this.commandIndex = this.commandIndex + 1;
-      } else if (event.key === 'ArrowDown') {
+      } else if (event.key === "ArrowDown") {
         this.commandIndex = this.commandIndex - 1;
       } else {
         return;
@@ -77,11 +77,11 @@ class WebCli extends HTMLElement {
     $wrapper.appendChild($output);
     $wrapper.appendChild($inputForm);
 
-    const textColor = '#f0f0f0';
-    const bgColor = '#333';
+    const textColor = "#f0f0f0";
+    const bgColor = "#333";
 
     // Style
-    const $style = document.createElement('style');
+    const $style = document.createElement("style");
     $style.textContent = `
       *,
       *::before,
@@ -186,10 +186,10 @@ class WebCli extends HTMLElement {
   }
 
   addLine(input: string): void {
-    const $output = this.shadowRoot?.querySelector('.console-output');
+    const $output = this.shadowRoot?.querySelector(".console-output");
     if (!$output) return;
-    const $line = document.createElement('div');
-    $line.setAttribute('class', 'line');
+    const $line = document.createElement("div");
+    $line.setAttribute("class", "line");
     $line.textContent = input;
     $output.appendChild($line);
     $output.scrollTop = $output.scrollHeight;

@@ -47,7 +47,7 @@ self.addEventListener("install", (event) => {
       "/static/fonts/3AA86B_1_0.ttf",
       "/static/fonts/3AA86B_1_0.woff",
       "/static/fonts/3AA86B_1_0.woff2",
-    ])
+    ]),
   );
 });
 
@@ -69,6 +69,6 @@ self.addEventListener("fetch", (event) => {
           headers: { "Content-Type": "text/plain" },
         });
       }
-    })
+    }),
   );
 });

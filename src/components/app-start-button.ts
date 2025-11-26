@@ -29,7 +29,7 @@ export class AppStartButtonElement extends HTMLElement {
   attributeChangedCallback(
     name: ObservedAttributeName,
     oldValue: string,
-    newValue: string
+    newValue: string,
   ) {
     if (
       this.shadowRoot &&
@@ -127,7 +127,7 @@ export class AppStartButtonElement extends HTMLElement {
           <span class="title"> ${this.getAttribute("app-name")} </span>
         </button>
       `,
-      this.shadowRoot!
+      this.shadowRoot!,
     );
   }
 
@@ -138,7 +138,7 @@ export class AppStartButtonElement extends HTMLElement {
           id: this.getAttribute("app-id"),
           name: this.getAttribute("app-name"),
         },
-      })
+      }),
     );
   }
 }

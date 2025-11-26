@@ -35,7 +35,7 @@ export class AppDesktopElement extends HTMLElement {
     this.#offsetX = event.detail.offsetX;
     this.#offsetY = event.detail.offsetY;
     this.#apps.push(
-      this.#apps.splice(this.#apps.indexOf(this.#dragTarget), 1)[0]
+      this.#apps.splice(this.#apps.indexOf(this.#dragTarget), 1)[0],
     );
     this.stackWindows();
   }
@@ -63,7 +63,7 @@ export class AppDesktopElement extends HTMLElement {
       if (event.target instanceof AppWindowElement) {
         event.target.saveStyle();
         this.#apps.push(
-          this.#apps.splice(this.#apps.indexOf(event.target), 1)[0]
+          this.#apps.splice(this.#apps.indexOf(event.target), 1)[0],
         );
         this.stackWindows();
       }
@@ -72,7 +72,7 @@ export class AppDesktopElement extends HTMLElement {
 
     this.#dragTarget.posX = this.snapPosition(this.#dragTarget.posX);
     this.#dragTarget.posY = this.snapPosition(
-      Math.max(this.#dragTarget.posY, 40)
+      Math.max(this.#dragTarget.posY, 40),
     );
     this.#dragTarget.style.transform = `translate(${this.#dragTarget.posX}px, ${
       this.#dragTarget.posY
@@ -88,7 +88,7 @@ export class AppDesktopElement extends HTMLElement {
 
     // Only one of each app at a time
     const existingAppIndex = this.#apps.findIndex(
-      (appWindow) => appWindow.getAttribute("app-id") === event.detail.id
+      (appWindow) => appWindow.getAttribute("app-id") === event.detail.id,
     );
     if (existingAppIndex !== -1) {
       this.#apps.push(this.#apps.splice(existingAppIndex, 1)[0]);
@@ -128,7 +128,7 @@ export class AppDesktopElement extends HTMLElement {
     this.firstElementChild!.removeChild(appWindow);
 
     const startButton = this.querySelector(
-      `app-start-button[app-id="${appWindow.getAttribute("app-id")}"]`
+      `app-start-button[app-id="${appWindow.getAttribute("app-id")}"]`,
     );
     if (startButton instanceof AppStartButtonElement) {
       startButton.appOpen = false;

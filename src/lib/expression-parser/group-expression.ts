@@ -1,18 +1,18 @@
-import { ExpressionArray } from './expression-array.interface';
-import { GroupedExpression } from './grouped-expression.interface';
-import { isOperatorString } from './is-operator-string';
-import { OperatorString } from './operator-string.type';
+import { ExpressionArray } from "./expression-array.interface";
+import { GroupedExpression } from "./grouped-expression.interface";
+import { isOperatorString } from "./is-operator-string";
+import { OperatorString } from "./operator-string.type";
 
 export function groupExpression(
-  expressions: ExpressionArray
+  expressions: ExpressionArray,
 ): GroupedExpression[] {
   const result: GroupedExpression[] = [];
-  let operator: OperatorString = '+';
+  let operator: OperatorString = "+";
   let negative = false;
 
   for (const expression of expressions) {
     if (isOperatorString(expression)) {
-      if (expression === '-' && operator !== '+') {
+      if (expression === "-" && operator !== "+") {
         negative = true;
       } else {
         operator = expression as OperatorString;
@@ -35,7 +35,7 @@ export function groupExpression(
       if (value !== null) {
         result.push({ operator, negative, value });
         negative = false;
-        operator = '+';
+        operator = "+";
       }
     }
   }

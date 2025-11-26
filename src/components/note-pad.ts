@@ -1,21 +1,21 @@
-import { controller, target } from '@github/catalyst';
-import { html, render } from '@github/jtml';
+import { controller, target } from "@github/catalyst";
+import { html, render } from "@github/jtml";
 
 @controller
 export class NotePadElement extends HTMLElement {
   @target noteContent!: HTMLTextAreaElement;
 
-  private readonly contentKey = 'notepad-content';
+  private readonly contentKey = "notepad-content";
 
   connectedCallback() {
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
     this.update();
 
     this.noteContent.value = this.getContent();
   }
 
   getContent(): string {
-    return window.localStorage.getItem(this.contentKey) || '';
+    return window.localStorage.getItem(this.contentKey) || "";
   }
 
   saveContent(): void {
@@ -55,7 +55,7 @@ export class NotePadElement extends HTMLElement {
           data-action="blur:note-pad#saveContent"
         ></textarea>
       `,
-      this.shadowRoot!
+      this.shadowRoot!,
     );
   }
 }

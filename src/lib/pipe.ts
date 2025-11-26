@@ -6,20 +6,20 @@ function pipe<A, B, C>(op1: PipeFn<A, B>, op2: PipeFn<B, C>): (input: A) => C;
 function pipe<A, B, C, D>(
   op1: PipeFn<A, B>,
   op2: PipeFn<B, C>,
-  op3: PipeFn<C, D>
+  op3: PipeFn<C, D>,
 ): (input: A) => D;
 function pipe<A, B, C, D, E>(
   op1: PipeFn<A, B>,
   op2: PipeFn<B, C>,
   op3: PipeFn<C, D>,
-  op4: PipeFn<D, E>
+  op4: PipeFn<D, E>,
 ): (input: A) => E;
 function pipe<A, B, C, D, E, F>(
   op1: PipeFn<A, B>,
   op2: PipeFn<B, C>,
   op3: PipeFn<C, D>,
   op4: PipeFn<D, E>,
-  op5: PipeFn<E, F>
+  op5: PipeFn<E, F>,
 ): (input: A) => F;
 function pipe<A, B, C, D, E, F, G>(
   op1: PipeFn<A, B>,
@@ -27,7 +27,7 @@ function pipe<A, B, C, D, E, F, G>(
   op3: PipeFn<C, D>,
   op4: PipeFn<D, E>,
   op5: PipeFn<E, F>,
-  op6: PipeFn<F, G>
+  op6: PipeFn<F, G>,
 ): (input: A) => G;
 function pipe<A, B, C, D, E, F, G>(
   op1: PipeFn<A, B>,

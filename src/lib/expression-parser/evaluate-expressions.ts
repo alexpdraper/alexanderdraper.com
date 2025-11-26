@@ -1,4 +1,4 @@
-import { GroupedExpression } from './grouped-expression.interface';
+import { GroupedExpression } from "./grouped-expression.interface";
 
 export function evaluateExpression(expressions: GroupedExpression[]): number {
   let result = 0;
@@ -9,7 +9,7 @@ export function evaluateExpression(expressions: GroupedExpression[]): number {
     if (Array.isArray(expression.value)) {
       value = evaluateExpression(expression.value);
     } else if (
-      typeof expression.value === 'number' &&
+      typeof expression.value === "number" &&
       !Number.isNaN(expression.value)
     ) {
       value = expression.value;
@@ -20,10 +20,10 @@ export function evaluateExpression(expressions: GroupedExpression[]): number {
     }
 
     const { operator } = expression;
-    if (operator === '+') result += value;
-    else if (operator === '-') result -= value;
-    else if (operator === '*') result *= value;
-    else if (operator === '/') result /= value;
+    if (operator === "+") result += value;
+    else if (operator === "-") result -= value;
+    else if (operator === "*") result *= value;
+    else if (operator === "/") result /= value;
   }
 
   return result;

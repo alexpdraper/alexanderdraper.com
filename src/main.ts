@@ -8,6 +8,7 @@ import "./components/dice-repl/dice-cli";
 import "./components/note-pad";
 import "./components/tcs-player";
 import "./components/about-me";
+import "./components/tree-climber";
 
 const domReady = (callback: () => void) => {
   if (document.readyState !== "loading") callback();

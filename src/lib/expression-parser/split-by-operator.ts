@@ -1,4 +1,4 @@
-import { ExpressionArray } from './expression-array.interface';
+import { ExpressionArray } from "./expression-array.interface";
 
 export function splitByOperator(expressions: ExpressionArray): ExpressionArray {
   const result: ExpressionArray = [];
@@ -7,9 +7,9 @@ export function splitByOperator(expressions: ExpressionArray): ExpressionArray {
       result.push(splitByOperator(expression));
     } else {
       expression
-        .replace(/\s+/g, '')
+        .replace(/\s+/g, "")
         .split(/(\+|\-|\*|\/)/g)
-        .filter((val) => val !== '')
+        .filter((val) => val !== "")
         .forEach((val) => result.push(val));
     }
   }

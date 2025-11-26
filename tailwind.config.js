@@ -1,14 +1,14 @@
 const systemFonts = [
-  'ui-sans-serif',
-  'system-ui',
-  '-apple-system',
-  'BlinkMacSystemFont',
+  "ui-sans-serif",
+  "system-ui",
+  "-apple-system",
+  "BlinkMacSystemFont",
   '"Segoe UI"',
-  'Roboto',
+  "Roboto",
   '"Helvetica Neue"',
-  'Arial',
+  "Arial",
   '"Noto Sans"',
-  'sans-serif',
+  "sans-serif",
   '"Apple Color Emoji"',
   '"Segoe UI Emoji"',
   '"Segoe UI Symbol"',
@@ -16,18 +16,18 @@ const systemFonts = [
 ];
 
 module.exports = {
-  purge: ['./site/index.html', './src/components/**/*.ts'],
-  darkMode: 'class',
+  purge: ["./site/index.html", "./src/components/**/*.ts"],
+  darkMode: "class",
   theme: {
     fontFamily: {
       system: systemFonts,
-      body: ['Quasimoda', ...systemFonts],
-      display: ['"Volte Rounded"', 'Futura', ...systemFonts],
+      body: ["Quasimoda", ...systemFonts],
+      display: ['"Volte Rounded"', "Futura", ...systemFonts],
     },
     extend: {
       cursor: {
-        grab: 'grab',
-        grabbing: 'grabbing',
+        grab: "grab",
+        grabbing: "grabbing",
       },
     },
   },
