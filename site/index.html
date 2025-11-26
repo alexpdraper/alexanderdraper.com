@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="w-full h-full">
   <head>
     <meta charset="utf-8" />
@@ -85,50 +85,99 @@
   <body class="w-full h-full overflow-hidden bg-pattern-fancy">
     <app-desktop class="block w-full h-full overflow-hidden">
       <div class="relative w-full h-full overflow-hidden">
-        <div class="absolute bottom-8 left-8 flex flex-col">
-          <h1
-            class="font-display text-4xl font-bold text-white bg-gray-600 px-4 py-2 order-2"
-          >
-            Alexander Draper
-          </h1>
+        <div
+          class="absolute top-0 left-0 flex bg-white right-0 flex-wrap border-b border-blue-300"
+        >
+          <div>
+            <h1
+              class="inline-block font-display text-xl font-bold text-blue-900 bg-blue-300 px-4 py-1"
+              style="height: 40px; min-width: 200px"
+            >
+              Alexander Draper
+            </h1>
+          </div>
 
-          <div class="order-1 mb-4 flex items-stretch">
+          <div class="flex">
             <app-start-button
-              class="mr-2"
+              app-id="about-me"
+              app-name="About"
+              data-action="launch:app-desktop#launchApp"
+            >
+              <svg
+                class="w-full h-full"
+                slot="icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 496 512"
+              >
+                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                <path
+                  d="M344 200c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24zm-192 0c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24zM248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zM80 224c0-39.8 32.2-72 72-72s72 32.2 72 72-32.2 72-72 72-72-32.2-72-72zm232 176H184c-21.2 0-21.2-32 0-32h128c21.2 0 21.2 32 0 32zm32-104c-39.8 0-72-32.2-72-72s32.2-72 72-72 72 32.2 72 72-32.2 72-72 72z"
+                />
+              </svg>
+            </app-start-button>
+            <app-start-button
               app-id="dice-cli"
               app-name="Dice CLI"
-              icon-src="/static/favicon.ico/favicon-96x96.png"
               data-action="launch:app-desktop#launchApp"
-            ></app-start-button>
+            >
+              <svg
+                class="w-full h-full"
+                slot="icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                <path
+                  d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h320c35.35 0 64-28.65 64-64V96c0-35.35-28.65-64-64-64zM128 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm0-96c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm0-96c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm192 192c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm0-96c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm0-96c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z"
+                />
+              </svg>
+            </app-start-button>
             <app-start-button
-              class="mr-2"
               app-id="note-pad"
               app-name="Notepad"
-              icon-src="/static/favicon.ico/favicon-96x96.png"
               data-action="launch:app-desktop#launchApp"
-            ></app-start-button>
+            >
+              <svg
+                class="w-full h-full"
+                slot="icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                <path
+                  d="M312 320h136V56c0-13.3-10.7-24-24-24H24C10.7 32 0 42.7 0 56v400c0 13.3 10.7 24 24 24h264V344c0-13.2 10.8-24 24-24zm129 55l-98 98c-4.5 4.5-10.6 7-17 7h-6V352h128v6.1c0 6.3-2.5 12.4-7 16.9z"
+                />
+              </svg>
+            </app-start-button>
+            <app-start-button
+              app-id="tcs-player"
+              app-name="Music"
+              data-action="launch:app-desktop#launchApp"
+            >
+              <svg
+                class="w-full h-full"
+                slot="icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                <path
+                  d="M470.38 1.51L150.41 96A32 32 0 0 0 128 126.51v261.41A139 139 0 0 0 96 384c-53 0-96 28.66-96 64s43 64 96 64 96-28.66 96-64V214.32l256-75v184.61a138.4 138.4 0 0 0-32-3.93c-53 0-96 28.66-96 64s43 64 96 64 96-28.65 96-64V32a32 32 0 0 0-41.62-30.49z"
+                />
+              </svg>
+            </app-start-button>
           </div>
         </div>
 
         <!-- <app-window
-          class="flex flex-col absolute border border-gray-600 bg-white bg-pattern-texture shadow-lg overflow-hidden resize"
-          style="width: 500px; height: 300px; top: 2rem; left: 2rem"
-          data-action="grabbed:app-desktop#startDragging"
+          app-id="video-conf"
+          app-name="Rookie Adventuring Party Good Times"
+          data-targets="app-desktop.appWindows"
+          data-action="
+            grabbed:app-desktop#startDragging
+            close-app:app-desktop#closeApp
+          "
         >
-          <div
-            class="w-full h-8 border-b border-gray-600 flex items-center p-2 cursor-grab font-system leading-none text-xs text-gray-600 select-none"
-            data-action="mousedown:app-window#grabHandle"
-            data-target="app-window.dragHandle"
-          >
-            <button
-              class="w-4 h-4 bg-red-400 text-red-100 rounded-full p-0 flex items-center justify-center text-center leading-none text-xs mr-2"
-              data-action="click:app-window#closeWindow"
-            >
-              <span>&times;</span>
-            </button>
-
-            Rookie Adventuring Party Good Times
-          </div>
           <div class="p-2 w-full h-full">
             <iframe
               class="block w-full h-full border-0"

@@ -1,5 +1,6 @@
-import { controller, targets } from '@github/catalyst';
-import { AppWindowElement } from './app-window';
+import { controller, targets } from "@github/catalyst";
+import { AppWindowElement } from "./app-window";
+import { AppStartButtonElement } from "./app-start-button";
 
 @controller
 export class AppDesktopElement extends HTMLElement {
@@ -13,18 +14,19 @@ export class AppDesktopElement extends HTMLElement {
   #apps: AppWindowElement[] = [];
 
   connectedCallback() {
+    this.#apps = this.appWindows;
     this.#onMouseMove = this.doDragging.bind(this);
     this.#onMouseUp = this.endDragging.bind(this);
-    window.addEventListener('mousemove', this.#onMouseMove);
-    window.addEventListener('mouseup', this.#onMouseUp);
+    window.addEventListener("mousemove", this.#onMouseMove);
+    window.addEventListener("mouseup", this.#onMouseUp);
   }
 
   disconnectedCallback() {
     if (this.#onMouseMove) {
-      window.removeEventListener('mousemove', this.#onMouseMove);
+      window.removeEventListener("mousemove", this.#onMouseMove);
     }
     if (this.#onMouseUp) {
-      window.removeEventListener('mouseup', this.#onMouseUp);
+      window.removeEventListener("mouseup", this.#onMouseUp);
     }
   }
 
@@ -40,9 +42,20 @@ export class AppDesktopElement extends HTMLElement {
 
   doDragging(event: MouseEvent): void {
     if (!this.#dragTarget) return;
-    const x = Math.max(event.clientX - this.#offsetX, 0);
-    const y = Math.max(event.clientY - this.#offsetY, 0);
-    this.#dragTarget.style.transform = `translate(${x}px, ${y}px)`;
+    this.#dragTarget.posX = Math.max(event.clientX - this.#offsetX, 0);
+    this.#dragTarget.posY = Math.max(event.clientY - this.#offsetY, 40);
+    this.#dragTarget.style.transform = `translate(${this.#dragTarget.posX}px, ${
+      this.#dragTarget.posY
+    }px)`;
+  }
+
+  private snapPosition(pos: number) {
+    const snapAmount = 20;
+
+    const dif = pos % snapAmount;
+    pos = pos - dif;
+    if (dif > snapAmount * 0.5) pos += snapAmount;
+    return Math.max(pos, 0);
   }
 
   endDragging(event: MouseEvent): void {
@@ -56,14 +69,26 @@ export class AppDesktopElement extends HTMLElement {
       }
       return;
     }
+
+    this.#dragTarget.posX = this.snapPosition(this.#dragTarget.posX);
+    this.#dragTarget.posY = this.snapPosition(
+      Math.max(this.#dragTarget.posY, 40)
+    );
+    this.#dragTarget.style.transform = `translate(${this.#dragTarget.posX}px, ${
+      this.#dragTarget.posY
+    }px)`;
     this.#dragTarget.dropHandle();
     this.#dragTarget = null;
   }
 
   launchApp(event: CustomEvent<{ name: string; id: string }>) {
+    if (event.target instanceof AppStartButtonElement) {
+      event.target.appOpen = true;
+    }
+
     // Only one of each app at a time
     const existingAppIndex = this.#apps.findIndex(
-      (appWindow) => appWindow.getAttribute('app-id') === event.detail.id
+      (appWindow) => appWindow.getAttribute("app-id") === event.detail.id
     );
     if (existingAppIndex !== -1) {
       this.#apps.push(this.#apps.splice(existingAppIndex, 1)[0]);
@@ -82,15 +107,15 @@ export class AppDesktopElement extends HTMLElement {
   }
 
   createAppWindow(appName: string, appId: string): AppWindowElement {
-    const appWindow = document.createElement('app-window') as AppWindowElement;
-    appWindow.setAttribute('data-targets', 'app-desktop.appWindows');
-    appWindow.setAttribute('app-name', appName);
-    appWindow.setAttribute('app-id', appId);
-    appWindow.style.transform = 'translate(32px, 32px)';
-    appWindow.style.width = '300px';
-    appWindow.style.height = '300px';
-    appWindow.addEventListener<any>('grabbed', this.startDragging.bind(this));
-    appWindow.addEventListener<any>('close-app', this.closeApp.bind(this));
+    const appWindow = document.createElement("app-window") as AppWindowElement;
+    appWindow.setAttribute("data-targets", "app-desktop.appWindows");
+    appWindow.setAttribute("app-name", appName);
+    appWindow.setAttribute("app-id", appId);
+    appWindow.style.transform = "translate(40px, 40px)";
+    appWindow.style.width = "320px";
+    appWindow.style.height = "320px";
+    appWindow.addEventListener<any>("grabbed", this.startDragging.bind(this));
+    appWindow.addEventListener<any>("close-app", this.closeApp.bind(this));
     return appWindow;
   }
 
@@ -101,6 +126,13 @@ export class AppDesktopElement extends HTMLElement {
       this.#apps.splice(index, 1);
     }
     this.firstElementChild!.removeChild(appWindow);
+
+    const startButton = this.querySelector(
+      `app-start-button[app-id="${appWindow.getAttribute("app-id")}"]`
+    );
+    if (startButton instanceof AppStartButtonElement) {
+      startButton.appOpen = false;
+    }
   }
 
   stackWindows(): void {
